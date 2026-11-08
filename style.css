@@ -1,0 +1,433 @@
+/* Variabel warna web */
+:root {
+  --bg: #f6f3ed;
+  --paper: #fffefa;
+  --ink: #25231f;
+  --muted: #77736b;
+  --line: #e7e1d7;
+  --accent: #8b5e3c;
+  --soft: #eee5da;
+}
+
+/* Reset dasar */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.container {
+  width: min(1120px, 90%);
+  margin: auto;
+}
+
+/* Header & navigasi */
+header {
+  background: rgba(255, 254, 250, 0.96);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font: bold 27px Georgia, serif;
+  letter-spacing: -1px;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+nav {
+  display: flex;
+  gap: 26px;
+  font-size: 14px;
+  color: #5e5a53;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* Bagian hero */
+.hero {
+  padding: 70px 0 55px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 42px;
+  align-items: center;
+}
+
+.eyebrow {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 13px;
+}
+
+h1 {
+  font: bold clamp(42px, 6vw, 68px)/1.05 Georgia, serif;
+  letter-spacing: -2px;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 570px;
+}
+
+/* Judul section */
+.section-head {
+  margin-bottom: 22px;
+}
+
+h2 {
+  font: 32px Georgia, serif;
+}
+
+.section-head p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* Kolom pencarian & filter */
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+input,
+select {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  padding: 12px 14px;
+  border-radius: 3px;
+  outline: none;
+  color: var(--ink);
+}
+
+input {
+  flex: 1;
+  min-width: 220px;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+}
+
+
+/* Grid kartu manga */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 26px 18px;
+}
+
+.card {
+  cursor: pointer;
+  min-width: 0;
+}
+
+.cover {
+  aspect-ratio: 3 / 4;
+  background: #e9e4da;
+  border: 1px solid #b9ad9d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  color: #8b8175;
+  font-size: 12px;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.card:hover .cover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 18px #32231518;
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card h3 {
+  font: 17px/1.3 Georgia, serif;
+  margin: 11px 0 4px;
+}
+
+.author {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.tag {
+  display: inline-block;
+  background: var(--soft);
+  color: #62432d;
+  padding: 4px 7px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  padding: 40px;
+}
+
+/* Halaman detail manga */
+#detailPage {
+  display: none;
+  padding: 45px 0 80px;
+}
+
+.back-btn {
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-bottom: 25px;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 45px;
+  align-items: start;
+}
+
+.detail-cover {
+  aspect-ratio: 3 / 4;
+  background: #e9e4da;
+  border: 1px solid #b9ad9d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+  color: #8b8175;
+  overflow: hidden;
+}
+
+.detail-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-info h1 {
+  font-size: clamp(34px, 5vw, 52px);
+  margin: 5px 0 12px;
+}
+
+.detail-author {
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.meta {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin: 20px 0 27px;
+}
+
+.meta span {
+  background: var(--soft);
+  padding: 7px 11px;
+  font-size: 12px;
+  color: #62432d;
+}
+
+.detail-info h2 {
+  font-size: 23px;
+  margin: 28px 0 9px;
+}
+
+.detail-info p {
+  color: #625e57;
+  max-width: 700px;
+}
+
+/*  Bagian about & footer */
+.about {
+  margin: 80px auto 65px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 35px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.about p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 24px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Bagian contact */
+.contact {
+  margin: 0 auto 65px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 35px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.contact p,
+.contact li {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.contact ul {
+  list-style: none;
+  margin-top: 12px;
+}
+
+.contact form input,
+.contact form textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  padding: 12px 14px;
+  border-radius: 3px;
+  outline: none;
+  font: inherit;
+}
+
+.contact textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.contact button {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  padding: 11px 22px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/*  Responsive: tablet  */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .detail-layout {
+    grid-template-columns: 230px 1fr;
+    gap: 28px;
+  }
+}
+
+/* Responsive: HP */
+@media (max-width: 650px) {
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 15px 0;
+  }
+
+  nav {
+    gap: 17px;
+  }
+
+  .hero {
+    padding: 45px 0;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 14px;
+  }
+
+
+  .detail-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .detail-cover {
+    max-width: 240px;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    padding: 25px;
+    margin: 55px auto 40px;
+  }
+
+  .contact {
+    grid-template-columns: 1fr;
+    padding: 25px;
+  }
+
+  #detailPage {
+    padding-top: 25px;
+  }
+}
