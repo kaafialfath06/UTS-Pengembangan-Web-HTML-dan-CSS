@@ -649,7 +649,7 @@
     }
 
 
-    /* Menampilkan halaman detail */
+    /* untuk nampilin halaman detail */
     function showDetail(index) {
       const manga = mangaList[index];
 
@@ -662,10 +662,7 @@
       document.getElementById("detailYear").textContent = "Tahun: " + manga.year;
       document.getElementById("detailStatus").textContent = "Status: " + manga.status;
       document.getElementById("detailSynopsis").textContent = manga.synopsis;
-      document.getElementById("detailExtra").textContent =
-        manga.title + " merupakan manga bergenre " + manga.genre.toLowerCase() +
-        ", ditulis oleh " + manga.author + ". Karya ini pertama kali diterbitkan pada " +
-        manga.year + ". Status penerbitannya: " + manga.status + ".";
+      document.getElementById("detailExtra").textContent = manga.title + " merupakan manga bergenre " + manga.genre.toLowerCase() + ", ditulis oleh " + manga.author + ". Karya ini pertama kali diterbitkan pada " +  manga.year + ". Status penerbitannya: " + manga.status + ".";
 
       const cover = document.getElementById("detailCover");
       cover.innerHTML = manga.image
