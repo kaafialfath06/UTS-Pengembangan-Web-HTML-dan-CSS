@@ -15,7 +15,7 @@ body {
 }
 
 header { text-align: center; padding: 20px 0; background: #e9e1d3; }
-header h1 { margin: 5px 0 20px; font-size: 36px; }
+header h1 { margin: 5px 0 20px; font-size: 36px; color: #263b32; }
 header p { font-size: 18px; }
 
 nav {
