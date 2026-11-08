@@ -1,108 +1,129 @@
-/* Gaya dasar MangaShelf  */
+
+/* Gaya utama MangaShelf */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  max-width: 1000px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 20px 30px;
+  font-family: Arial, Helvetica, sans-serif;
   background: #fffefa;
   color: #222;
   line-height: 1.5;
 }
 
-header {
-  text-align: center;
-  padding: 20px 0;
-}
-
-h1 {
-  margin-bottom: 5px;
-}
+header { text-align: center; padding: 20px 0; }
+header h1 { margin: 5px 0 20px; font-size: 36px; }
+header p { font-size: 18px; }
 
 nav {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  padding: 15px 0;
 }
+nav a { color: #8b5e3c; font-size: 17px; }
 
-nav a {
-  margin: 0 10px;
-  color: #8b5e3c;
+hr { margin: 25px 0; border: 0; border-top: 1px solid #bbb; }
+section { margin-bottom: 30px; }
+section h2 { font-size: 28px; }
+
+#cari, #genre {
+  padding: 7px 9px;
+  margin-right: 5px;
+  font: inherit;
 }
+#cari { width: 250px; max-width: 100%; }
 
-hr {
-  margin: 25px 0;
-}
-
-section {
-  margin-bottom: 10px;
-}
-
-/* daftar kartu manga */
 .daftar {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
 }
 
 .manga {
+  min-width: 0;
+  padding: 12px;
   border: 1px solid #bbb;
-  padding: 10px;
+  background: #fff;
 }
 
 .manga img {
+  display: block;
   width: 100%;
   height: 250px;
   object-fit: cover;
 }
 
-.manga h3 {
-  margin: 8px 0 2px;
-  font-size: 16px;
-}
+.manga h3 { margin: 10px 0 3px; font-size: 18px; }
+.kecil { font-size: 13px; color: #666; }
 
-.kecil {
-  font-size: 13px;
-  color: #666;
+button {
+  margin: 3px 3px 3px 0;
+  padding: 7px 11px;
+  border: 1px solid #8b5e3c;
+  border-radius: 3px;
+  background: #8b5e3c;
+  color: white;
+  cursor: pointer;
 }
+button:hover { background: #70472c; }
 
 .detail {
   display: none;
-  margin-top: 8px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #ddd;
   font-size: 14px;
 }
 
-#kosong,
-#rInfo {
-  display: none;
-  color: #8b5e3c;
-}
+#kosong, #rInfo { display: none; color: #8b5e3c; }
 
-/* tabel */
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th,
-td {
-  border: 1px solid #bbb;
-  padding: 6px 10px;
-  text-align: left;
-}
-
-th {
-  background: #eee5da;
-}
-
-/* form */
-input[type="text"],
-input[type="email"],
-textarea {
+form input[type="text"],
+form input[type="email"],
+form textarea {
   width: 100%;
   max-width: 400px;
+  padding: 7px;
+  font: inherit;
 }
+form select { padding: 6px; }
 
 footer {
+  padding: 10px 0;
   text-align: center;
   font-size: 13px;
   color: #666;
 }
+
+/* Tampilan tablet */
+@media (max-width: 1000px) {
+  body { padding: 18px 22px; }
+  .daftar { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Tampilan ponsel */
+@media (max-width: 700px) {
+  body { padding: 14px; }
+  header h1 { font-size: 30px; }
+  header p { font-size: 16px; }
+  nav { gap: 12px 18px; }
+  .daftar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .manga { padding: 8px; }
+  .manga img { height: 210px; }
+}
+
+@media (max-width: 420px) {
+  .daftar { grid-template-columns: 1fr; }
+  .manga img { height: 300px; }
+  #cari, #genre {
+    width: 100%;
+    margin: 4px 0;
+  }
