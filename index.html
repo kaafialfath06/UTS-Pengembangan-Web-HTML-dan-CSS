@@ -6,57 +6,689 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MangaShelf</title>
   <link rel="icon" type="image/svg+xml" href="images/book.svg">
-
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <! ----HEADER---- >
-  <header>
-    <div class="container nav">
-      <a class="logo" href="#" onclick="showCatalog(); return false">Manga<span>Shelf.</span></a>
-
-      <nav>
-        <a href="#home" onclick="showCatalog()">Home</a>
-        <a href="#collection" onclick="showCatalog()">Collection</a>
-        <a href="#about" onclick="showCatalog()">About</a>
-        <a href="#contact" onclick="showCatalog()">Contact</a>
-      </nav>
-    </div>
+  <!-- HEADER -->
+  <header id="home">
+    <h1>MangaShelf</h1>
+    <p><b>Stories worth keeping.</b></p>
+    <p>Katalog manga atau komik Jepang. Tiap judul punya dunianya sendiri, jadi telusuri, temukan, dan simpan cerita yang bakal terus kamu ingat.</p>
   </header>
 
-  <! ----HALAMAN UTAMA (katalog)---- >
-  <main id="catalogPage">
+  <!-- MENU -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#katalog">Katalog</a>
+    <a href="#tentang">Tentang Kami</a>
+    <a href="#request">Request</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
 
-    <!-- Hero -->
-    <section class="hero container" id="home">
-      <div class="hero-grid">
-        <div>
-          <div class="eyebrow">Katalog manga atau komik jepang</div>
-          <h1>Stories worth keeping.</h1>
-          <p>
-            Tiap judul punya dunianya sendiri. Telusuri, temukan, dan simpan cerita yang bakal terus kamu ingat.
-          </p>
+  <hr>
+
+  <!-- KATALOG -->
+  <section id="katalog">
+    <h2>Katalog Manga</h2>
+    <p>Ada 50 judul manga. Klik tombol "Lihat Detail" untuk membaca sinopsisnya.</p>
+
+    <p>
+      <input id="cari" type="search" placeholder="Cari judul atau penulis..." oninput="filterManga()">
+      <select id="genre" onchange="filterManga()">
+        <option value="all">Semua genre</option>
+        <option>Action</option>
+        <option>Adventure</option>
+        <option>Fantasy</option>
+        <option>Drama</option>
+        <option>Romance</option>
+        <option>Comedy</option>
+        <option>Sports</option>
+        <option>Horror</option>
+        <option>Mystery</option>
+        <option>Slice of Life</option>
+        <option>Supernatural</option>
+      </select>
+    </p>
+
+    <p id="kosong">Manga tidak ditemukan. Coba kata kunci lain.</p>
+
+    <div class="daftar">
+
+      <div class="manga" data-cari="one piece eiichiro oda" data-genre="Adventure">
+        <img src="images/one piece.jpg" alt="Sampul One Piece">
+        <h3>One Piece</h3>
+        <p class="kecil">Eiichiro Oda | Adventure</p>
+        <button onclick='document.getElementById("d1").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d1").style.display = "none"'>Tutup</button>
+        <div id="d1" class="detail">
+          <p>Monkey D. Luffy berlayar bersama kru Topi Jerami untuk mencari harta karun legendaris bernama One Piece dan menjadi Raja Bajak Laut.</p>
+          <p class="kecil">Tahun terbit: 1997 | Status: Ongoing</p>
         </div>
-
-      </div>
-    </section>
-
-    <!-- Koleksi manga -->
-    <section class="container" id="collection">
-      <div class="section-head">
-        <div class="eyebrow">Jelajahi koleksi</div>
-        <h2>Manga Collection</h2>
-        <p>Klik salah satu sampul atau judul untuk membaca informasi manga.</p>
       </div>
 
-      <!-- Pencarian dan filter genre -->
-      <div class="toolbar">
-        <input id="search" type="search" placeholder="Cari judul manga atau penulis...">
+      <div class="manga" data-cari="naruto masashi kishimoto" data-genre="Action">
+        <img src="images/naruto.jpg" alt="Sampul Naruto">
+        <h3>Naruto</h3>
+        <p class="kecil">Masashi Kishimoto | Action</p>
+        <button onclick='document.getElementById("d2").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d2").style.display = "none"'>Tutup</button>
+        <div id="d2" class="detail">
+          <p>Naruto Uzumaki adalah seorang ninja muda yang bercita-cita menjadi Hokage dan mendapatkan pengakuan dari orang-orang di desanya.</p>
+          <p class="kecil">Tahun terbit: 1999 | Status: Completed</p>
+        </div>
+      </div>
 
-        <select id="genre">
-          <option value="all">Semua genre</option>
+      <div class="manga" data-cari="bleach tite kubo" data-genre="Action">
+        <img src="images/bleach.jpg" alt="Sampul Bleach">
+        <h3>Bleach</h3>
+        <p class="kecil">Tite Kubo | Action</p>
+        <button onclick='document.getElementById("d3").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d3").style.display = "none"'>Tutup</button>
+        <div id="d3" class="detail">
+          <p>Ichigo Kurosaki memperoleh kekuatan Shinigami dan harus melindungi manusia dari roh jahat serta menghadapi berbagai ancaman.</p>
+          <p class="kecil">Tahun terbit: 2001 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="dragon ball akira toriyama" data-genre="Action">
+        <img src="images/dragon ball.jpg" alt="Sampul Dragon Ball">
+        <h3>Dragon Ball</h3>
+        <p class="kecil">Akira Toriyama | Action</p>
+        <button onclick='document.getElementById("d4").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d4").style.display = "none"'>Tutup</button>
+        <div id="d4" class="detail">
+          <p>Son Goku memulai petualangan untuk mengumpulkan Dragon Ball. Perjalanannya membawanya bertemu teman dan lawan yang kuat.</p>
+          <p class="kecil">Tahun terbit: 1984 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="demon slayer koyoharu gotouge" data-genre="Fantasy">
+        <img src="images/demon slayer.jpg" alt="Sampul Demon Slayer">
+        <h3>Demon Slayer</h3>
+        <p class="kecil">Koyoharu Gotouge | Fantasy</p>
+        <button onclick='document.getElementById("d5").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d5").style.display = "none"'>Tutup</button>
+        <div id="d5" class="detail">
+          <p>Tanjiro Kamado menjadi pemburu iblis setelah keluarganya diserang dan adiknya, Nezuko, berubah menjadi iblis.</p>
+          <p class="kecil">Tahun terbit: 2016 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="jujutsu kaisen gege akutami" data-genre="Supernatural">
+        <img src="images/jjk.jpg" alt="Sampul Jujutsu Kaisen">
+        <h3>Jujutsu Kaisen</h3>
+        <p class="kecil">Gege Akutami | Supernatural</p>
+        <button onclick='document.getElementById("d6").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d6").style.display = "none"'>Tutup</button>
+        <div id="d6" class="detail">
+          <p>Yuji Itadori terlibat dalam dunia penyihir jujutsu setelah menelan benda terkutuk dan menjadi wadah Sukuna.</p>
+          <p class="kecil">Tahun terbit: 2018 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="attack on titan hajime isayama" data-genre="Action">
+        <img src="images/aot.jpg" alt="Sampul Attack on Titan">
+        <h3>Attack on Titan</h3>
+        <p class="kecil">Hajime Isayama | Action</p>
+        <button onclick='document.getElementById("d7").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d7").style.display = "none"'>Tutup</button>
+        <div id="d7" class="detail">
+          <p>Eren Yeager berjuang melawan para Titan yang mengancam umat manusia di balik tembok raksasa.</p>
+          <p class="kecil">Tahun terbit: 2009 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="death note tsugumi ohba" data-genre="Mystery">
+        <img src="images/death note.jpg" alt="Sampul Death Note">
+        <h3>Death Note</h3>
+        <p class="kecil">Tsugumi Ohba | Mystery</p>
+        <button onclick='document.getElementById("d8").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d8").style.display = "none"'>Tutup</button>
+        <div id="d8" class="detail">
+          <p>Light Yagami menemukan buku misterius yang dapat membunuh siapa pun yang namanya ditulis di dalamnya.</p>
+          <p class="kecil">Tahun terbit: 2003 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="fullmetal alchemist hiromu arakawa" data-genre="Adventure">
+        <img src="images/FMAB.jpg" alt="Sampul Fullmetal Alchemist">
+        <h3>Fullmetal Alchemist</h3>
+        <p class="kecil">Hiromu Arakawa | Adventure</p>
+        <button onclick='document.getElementById("d9").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d9").style.display = "none"'>Tutup</button>
+        <div id="d9" class="detail">
+          <p>Edward dan Alphonse Elric mencari Philosopher&#x27;s Stone untuk mengembalikan tubuh mereka setelah eksperimen alkimia yang gagal.</p>
+          <p class="kecil">Tahun terbit: 2001 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="hunter x hunter yoshihiro togashi" data-genre="Adventure">
+        <img src="images/hunter x hunter.jpg" alt="Sampul Hunter x Hunter">
+        <h3>Hunter x Hunter</h3>
+        <p class="kecil">Yoshihiro Togashi | Adventure</p>
+        <button onclick='document.getElementById("d10").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d10").style.display = "none"'>Tutup</button>
+        <div id="d10" class="detail">
+          <p>Gon Freecss mengikuti ujian Hunter demi menemukan ayahnya dan menjelajahi dunia yang penuh tantangan.</p>
+          <p class="kecil">Tahun terbit: 1998 | Status: Hiatus</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="my hero academia kohei horikoshi" data-genre="Action">
+        <img src="images/mha.jpg" alt="Sampul My Hero Academia">
+        <h3>My Hero Academia</h3>
+        <p class="kecil">Kohei Horikoshi | Action</p>
+        <button onclick='document.getElementById("d11").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d11").style.display = "none"'>Tutup</button>
+        <div id="d11" class="detail">
+          <p>Izuku Midoriya bermimpi menjadi pahlawan di dunia ketika sebagian besar manusia memiliki kekuatan khusus bernama Quirk.</p>
+          <p class="kecil">Tahun terbit: 2014 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="tokyo ghoul sui ishida" data-genre="Horror">
+        <img src="images/tokyo.jpg" alt="Sampul Tokyo Ghoul">
+        <h3>Tokyo Ghoul</h3>
+        <p class="kecil">Sui Ishida | Horror</p>
+        <button onclick='document.getElementById("d12").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d12").style.display = "none"'>Tutup</button>
+        <div id="d12" class="detail">
+          <p>Kehidupan Ken Kaneki berubah setelah ia menjadi setengah ghoul dan harus menghadapi konflik antara manusia dan ghoul.</p>
+          <p class="kecil">Tahun terbit: 2011 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="chainsaw man tatsuki fujimoto" data-genre="Action">
+        <img src="images/cm.jpg" alt="Sampul Chainsaw Man">
+        <h3>Chainsaw Man</h3>
+        <p class="kecil">Tatsuki Fujimoto | Action</p>
+        <button onclick='document.getElementById("d13").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d13").style.display = "none"'>Tutup</button>
+        <div id="d13" class="detail">
+          <p>Denji hidup dalam kemiskinan bersama iblis gergaji mesin bernama Pochita sebelum terlibat dalam pekerjaan pemburu iblis.</p>
+          <p class="kecil">Tahun terbit: 2018 | Status: Ongoing</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="spy x family tatsuya endo" data-genre="Comedy">
+        <img src="images/spy.jpg" alt="Sampul Spy x Family">
+        <h3>Spy x Family</h3>
+        <p class="kecil">Tatsuya Endo | Comedy</p>
+        <button onclick='document.getElementById("d14").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d14").style.display = "none"'>Tutup</button>
+        <div id="d14" class="detail">
+          <p>Seorang mata-mata membentuk keluarga palsu untuk menjalankan misi rahasia, tanpa mengetahui rahasia yang disimpan anggota keluarganya.</p>
+          <p class="kecil">Tahun terbit: 2019 | Status: Ongoing</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="haikyu!! haruichi furudate" data-genre="Sports">
+        <img src="images/voli.jpg" alt="Sampul Haikyu!!">
+        <h3>Haikyu!!</h3>
+        <p class="kecil">Haruichi Furudate | Sports</p>
+        <button onclick='document.getElementById("d15").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d15").style.display = "none"'>Tutup</button>
+        <div id="d15" class="detail">
+          <p>Shoyo Hinata berusaha menjadi pemain voli hebat meski memiliki postur tubuh yang lebih pendek dari kebanyakan pemain.</p>
+          <p class="kecil">Tahun terbit: 2012 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="slam dunk takehiko inoue" data-genre="Sports">
+        <img src="images/slam dunk.jpg" alt="Sampul Slam Dunk">
+        <h3>Slam Dunk</h3>
+        <p class="kecil">Takehiko Inoue | Sports</p>
+        <button onclick='document.getElementById("d16").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d16").style.display = "none"'>Tutup</button>
+        <div id="d16" class="detail">
+          <p>Hanamichi Sakuragi mulai mengenal basket setelah bergabung dengan tim sekolah dan menemukan semangat baru dalam olahraga.</p>
+          <p class="kecil">Tahun terbit: 1990 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="blue lock muneyuki kaneshiro" data-genre="Sports">
+        <img src="images/blue lock.jpg" alt="Sampul Blue Lock">
+        <h3>Blue Lock</h3>
+        <p class="kecil">Muneyuki Kaneshiro | Sports</p>
+        <button onclick='document.getElementById("d17").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d17").style.display = "none"'>Tutup</button>
+        <div id="d17" class="detail">
+          <p>Sejumlah striker muda mengikuti program pelatihan ekstrem untuk membentuk penyerang terbaik bagi tim nasional Jepang.</p>
+          <p class="kecil">Tahun terbit: 2018 | Status: Ongoing</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="kuroko&#x27;s basketball tadatoshi fujimaki" data-genre="Sports">
+        <img src="images/kb.jpg" alt="Sampul Kuroko&#x27;s Basketball">
+        <h3>Kuroko&#x27;s Basketball</h3>
+        <p class="kecil">Tadatoshi Fujimaki | Sports</p>
+        <button onclick='document.getElementById("d18").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d18").style.display = "none"'>Tutup</button>
+        <div id="d18" class="detail">
+          <p>Tetsuya Kuroko bergabung dengan tim basket SMA Seirin dan bekerja sama dengan Taiga Kagami untuk menghadapi pemain-pemain hebat.</p>
+          <p class="kecil">Tahun terbit: 2008 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="jojo&#x27;s bizarre adventure hirohiko araki" data-genre="Adventure">
+        <img src="images/jojo.jpg" alt="Sampul JoJo&#x27;s Bizarre Adventure">
+        <h3>JoJo&#x27;s Bizarre Adventure</h3>
+        <p class="kecil">Hirohiko Araki | Adventure</p>
+        <button onclick='document.getElementById("d19").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d19").style.display = "none"'>Tutup</button>
+        <div id="d19" class="detail">
+          <p>Kisah lintas generasi keluarga Joestar yang menghadapi musuh dan kejadian supernatural dengan kemampuan unik.</p>
+          <p class="kecil">Tahun terbit: 1987 | Status: Ongoing</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="berserk kentaro miura" data-genre="Fantasy">
+        <img src="images/berserk.jpg" alt="Sampul Berserk">
+        <h3>Berserk</h3>
+        <p class="kecil">Kentaro Miura | Fantasy</p>
+        <button onclick='document.getElementById("d20").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d20").style.display = "none"'>Tutup</button>
+        <div id="d20" class="detail">
+          <p>Guts, seorang pendekar pedang, menjalani perjalanan penuh konflik, pengkhianatan, dan perjuangan di dunia fantasi yang kelam.</p>
+          <p class="kecil">Tahun terbit: 1989 | Status: Hiatus</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="vagabond takehiko inoue" data-genre="Drama">
+        <img src="images/vagabond.jpg" alt="Sampul Vagabond">
+        <h3>Vagabond</h3>
+        <p class="kecil">Takehiko Inoue | Drama</p>
+        <button onclick='document.getElementById("d21").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d21").style.display = "none"'>Tutup</button>
+        <div id="d21" class="detail">
+          <p>Terinspirasi dari kehidupan pendekar Miyamoto Musashi, manga ini mengikuti perjalanan seorang samurai mencari makna kekuatan.</p>
+          <p class="kecil">Tahun terbit: 1998 | Status: Hiatus</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="vinland saga makoto yukimura" data-genre="Adventure">
+        <img src="images/vs.jpg" alt="Sampul Vinland Saga">
+        <h3>Vinland Saga</h3>
+        <p class="kecil">Makoto Yukimura | Adventure</p>
+        <button onclick='document.getElementById("d22").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d22").style.display = "none"'>Tutup</button>
+        <div id="d22" class="detail">
+          <p>Thorfinn tumbuh di tengah peperangan bangsa Viking dan menjalani perjalanan panjang untuk menemukan tujuan hidupnya.</p>
+          <p class="kecil">Tahun terbit: 2005 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="kingdom yasuhisa hara" data-genre="Action">
+        <img src="images/kingdom.jpg" alt="Sampul Kingdom">
+        <h3>Kingdom</h3>
+        <p class="kecil">Yasuhisa Hara | Action</p>
+        <button onclick='document.getElementById("d23").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d23").style.display = "none"'>Tutup</button>
+        <div id="d23" class="detail">
+          <p>Berlatar masa Negara-Negara Berperang di Tiongkok, Shin bercita-cita menjadi jenderal besar.</p>
+          <p class="kecil">Tahun terbit: 2006 | Status: Ongoing</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="dr. stone riichiro inagaki" data-genre="Adventure">
+        <img src="images/dr stone.jpg" alt="Sampul Dr. Stone">
+        <h3>Dr. Stone</h3>
+        <p class="kecil">Riichiro Inagaki | Adventure</p>
+        <button onclick='document.getElementById("d24").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d24").style.display = "none"'>Tutup</button>
+        <div id="d24" class="detail">
+          <p>Senku berusaha membangun kembali peradaban manusia dengan ilmu pengetahuan setelah seluruh umat manusia membatu.</p>
+          <p class="kecil">Tahun terbit: 2017 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="the promised neverland kaiu shirai" data-genre="Mystery">
+        <img src="images/anime.jpg" alt="Sampul The Promised Neverland">
+        <h3>The Promised Neverland</h3>
+        <p class="kecil">Kaiu Shirai | Mystery</p>
+        <button onclick='document.getElementById("d25").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d25").style.display = "none"'>Tutup</button>
+        <div id="d25" class="detail">
+          <p>Sekelompok anak di panti asuhan menemukan rahasia mengerikan tentang tempat tinggal mereka dan merencanakan pelarian.</p>
+          <p class="kecil">Tahun terbit: 2016 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="assassination classroom yusei matsui" data-genre="Comedy">
+        <img src="images/ac.jpg" alt="Sampul Assassination Classroom">
+        <h3>Assassination Classroom</h3>
+        <p class="kecil">Yusei Matsui | Comedy</p>
+        <button onclick='document.getElementById("d26").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d26").style.display = "none"'>Tutup</button>
+        <div id="d26" class="detail">
+          <p>Satu kelas mendapat tugas membunuh guru mereka yang memiliki kekuatan luar biasa sebelum bumi terancam.</p>
+          <p class="kecil">Tahun terbit: 2012 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="mob psycho 100 one" data-genre="Supernatural">
+        <img src="images/mp100.jpg" alt="Sampul Mob Psycho 100">
+        <h3>Mob Psycho 100</h3>
+        <p class="kecil">ONE | Supernatural</p>
+        <button onclick='document.getElementById("d27").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d27").style.display = "none"'>Tutup</button>
+        <div id="d27" class="detail">
+          <p>Shigeo Kageyama, siswa dengan kekuatan psikis besar, berusaha menjalani kehidupan normal dan memahami perasaannya.</p>
+          <p class="kecil">Tahun terbit: 2012 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="one punch man one" data-genre="Action">
+        <img src="images/opm.jpg" alt="Sampul One Punch Man">
+        <h3>One Punch Man</h3>
+        <p class="kecil">ONE | Action</p>
+        <button onclick='document.getElementById("d28").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d28").style.display = "none"'>Tutup</button>
+        <div id="d28" class="detail">
+          <p>Saitama menjadi pahlawan yang mampu mengalahkan musuh hanya dengan satu pukulan, tetapi justru merasa bosan.</p>
+          <p class="kecil">Tahun terbit: 2012 | Status: Ongoing</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="fire force atsushi ohkubo" data-genre="Action">
+        <img src="images/fire.jpg" alt="Sampul Fire Force">
+        <h3>Fire Force</h3>
+        <p class="kecil">Atsushi Ohkubo | Action</p>
+        <button onclick='document.getElementById("d29").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d29").style.display = "none"'>Tutup</button>
+        <div id="d29" class="detail">
+          <p>Shinra Kusakabe bergabung dengan pasukan pemadam khusus untuk melawan fenomena manusia yang terbakar secara spontan.</p>
+          <p class="kecil">Tahun terbit: 2015 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="soul eater atsushi ohkubo" data-genre="Fantasy">
+        <img src="images/se.jpg" alt="Sampul Soul Eater">
+        <h3>Soul Eater</h3>
+        <p class="kecil">Atsushi Ohkubo | Fantasy</p>
+        <button onclick='document.getElementById("d30").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d30").style.display = "none"'>Tutup</button>
+        <div id="d30" class="detail">
+          <p>Para siswa akademi senjata dan meister bekerja sama mengumpulkan jiwa untuk menciptakan Death Scythe.</p>
+          <p class="kecil">Tahun terbit: 2004 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="black clover yuki tabata" data-genre="Fantasy">
+        <img src="images/bc.jpg" alt="Sampul Black Clover">
+        <h3>Black Clover</h3>
+        <p class="kecil">Yuki Tabata | Fantasy</p>
+        <button onclick='document.getElementById("d31").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d31").style.display = "none"'>Tutup</button>
+        <div id="d31" class="detail">
+          <p>Asta, seorang anak tanpa sihir, bertekad menjadi Wizard King di dunia yang menjadikan sihir sebagai bagian penting kehidupan.</p>
+          <p class="kecil">Tahun terbit: 2015 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="fairy tail hiro mashima" data-genre="Adventure">
+        <img src="images/ft.jpg" alt="Sampul Fairy Tail">
+        <h3>Fairy Tail</h3>
+        <p class="kecil">Hiro Mashima | Adventure</p>
+        <button onclick='document.getElementById("d32").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d32").style.display = "none"'>Tutup</button>
+        <div id="d32" class="detail">
+          <p>Lucy Heartfilia bergabung dengan guild penyihir Fairy Tail dan menjalani berbagai misi bersama teman-temannya.</p>
+          <p class="kecil">Tahun terbit: 2006 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="magi: the labyrinth of magic shinobu ohtaka" data-genre="Fantasy">
+        <img src="images/magi.jpg" alt="Sampul Magi: The Labyrinth of Magic">
+        <h3>Magi: The Labyrinth of Magic</h3>
+        <p class="kecil">Shinobu Ohtaka | Fantasy</p>
+        <button onclick='document.getElementById("d33").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d33").style.display = "none"'>Tutup</button>
+        <div id="d33" class="detail">
+          <p>Aladdin menjelajahi dunia penuh dungeon, kerajaan, dan kekuatan misterius bersama teman-temannya.</p>
+          <p class="kecil">Tahun terbit: 2009 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="noragami adachitoka" data-genre="Supernatural">
+        <img src="images/noragami.jpg" alt="Sampul Noragami">
+        <h3>Noragami</h3>
+        <p class="kecil">Adachitoka | Supernatural</p>
+        <button onclick='document.getElementById("d34").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d34").style.display = "none"'>Tutup</button>
+        <div id="d34" class="detail">
+          <p>Yato adalah dewa kecil yang menerima pekerjaan sederhana sambil berusaha membangun tempat bagi dirinya di dunia para dewa.</p>
+          <p class="kecil">Tahun terbit: 2010 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="fruits basket natsuki takaya" data-genre="Romance">
+        <img src="images/fruit basket.jpg" alt="Sampul Fruits Basket">
+        <h3>Fruits Basket</h3>
+        <p class="kecil">Natsuki Takaya | Romance</p>
+        <button onclick='document.getElementById("d35").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d35").style.display = "none"'>Tutup</button>
+        <div id="d35" class="detail">
+          <p>Tohru Honda tinggal bersama keluarga Sohma dan mengetahui rahasia kutukan zodiak yang mengikat keluarga tersebut.</p>
+          <p class="kecil">Tahun terbit: 1998 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="kimi ni todoke karuho shiina" data-genre="Romance">
+        <img src="images/knt.jpg" alt="Sampul Kimi ni Todoke">
+        <h3>Kimi ni Todoke</h3>
+        <p class="kecil">Karuho Shiina | Romance</p>
+        <button onclick='document.getElementById("d36").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d36").style.display = "none"'>Tutup</button>
+        <div id="d36" class="detail">
+          <p>Sawako Kuronuma yang pemalu perlahan membangun persahabatan dan hubungan romantis setelah bertemu teman sekelasnya.</p>
+          <p class="kecil">Tahun terbit: 2005 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="ao haru ride io sakisaka" data-genre="Romance">
+        <img src="images/ahr.jpg" alt="Sampul Ao Haru Ride">
+        <h3>Ao Haru Ride</h3>
+        <p class="kecil">Io Sakisaka | Romance</p>
+        <button onclick='document.getElementById("d37").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d37").style.display = "none"'>Tutup</button>
+        <div id="d37" class="detail">
+          <p>Futaba bertemu kembali dengan cinta pertamanya saat SMP dan mencoba memahami perubahan yang terjadi pada diri mereka.</p>
+          <p class="kecil">Tahun terbit: 2011 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="your lie in april naoshi arakawa" data-genre="Drama">
+        <img src="images/lie.jpg" alt="Sampul Your Lie in April">
+        <h3>Your Lie in April</h3>
+        <p class="kecil">Naoshi Arakawa | Drama</p>
+        <button onclick='document.getElementById("d38").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d38").style.display = "none"'>Tutup</button>
+        <div id="d38" class="detail">
+          <p>Kousei Arima, pianis muda yang kehilangan kemampuannya mendengar musik, kembali menemukan semangat melalui seorang pemain biola.</p>
+          <p class="kecil">Tahun terbit: 2011 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="a silent voice yoshitoki oima" data-genre="Drama">
+        <img src="images/asv.jpg" alt="Sampul A Silent Voice">
+        <h3>A Silent Voice</h3>
+        <p class="kecil">Yoshitoki Oima | Drama</p>
+        <button onclick='document.getElementById("d39").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d39").style.display = "none"'>Tutup</button>
+        <div id="d39" class="detail">
+          <p>Shoya Ishida berusaha menebus kesalahan masa lalunya setelah bertemu kembali dengan Shoko Nishimiya, teman sekolah yang tuli.</p>
+          <p class="kecil">Tahun terbit: 2013 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="kaguya-sama: love is war aka akasaka" data-genre="Comedy">
+        <img src="images/low.jpg" alt="Sampul Kaguya-sama: Love Is War">
+        <h3>Kaguya-sama: Love Is War</h3>
+        <p class="kecil">Aka Akasaka | Comedy</p>
+        <button onclick='document.getElementById("d40").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d40").style.display = "none"'>Tutup</button>
+        <div id="d40" class="detail">
+          <p>Dua anggota OSIS yang saling menyukai terlibat dalam persaingan strategi agar pihak lain mengungkapkan perasaan lebih dulu.</p>
+          <p class="kecil">Tahun terbit: 2015 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="komi can&#x27;t communicate tomohito oda" data-genre="Comedy">
+        <img src="images/komi.jpg" alt="Sampul Komi Can&#x27;t Communicate">
+        <h3>Komi Can&#x27;t Communicate</h3>
+        <p class="kecil">Tomohito Oda | Comedy</p>
+        <button onclick='document.getElementById("d41").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d41").style.display = "none"'>Tutup</button>
+        <div id="d41" class="detail">
+          <p>Shoko Komi ingin memiliki seratus teman, tetapi kesulitan berkomunikasi membuatnya memulai perjalanan bersama Tadano.</p>
+          <p class="kecil">Tahun terbit: 2016 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="horimiya hero, daisuke hagiwara" data-genre="Romance">
+        <img src="images/horimiya.jpg" alt="Sampul Horimiya">
+        <h3>Horimiya</h3>
+        <p class="kecil">HERO, Daisuke Hagiwara | Romance</p>
+        <button onclick='document.getElementById("d42").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d42").style.display = "none"'>Tutup</button>
+        <div id="d42" class="detail">
+          <p>Kyoko Hori dan Izumi Miyamura menemukan sisi lain satu sama lain di luar penampilan mereka di sekolah.</p>
+          <p class="kecil">Tahun terbit: 2011 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="yotsuba&amp;! kiyohiko azuma" data-genre="Slice of Life">
+        <img src="images/yotsuba.jpg" alt="Sampul Yotsuba&amp;!">
+        <h3>Yotsuba&amp;!</h3>
+        <p class="kecil">Kiyohiko Azuma | Slice of Life</p>
+        <button onclick='document.getElementById("d43").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d43").style.display = "none"'>Tutup</button>
+        <div id="d43" class="detail">
+          <p>Yotsuba, anak kecil yang penuh rasa ingin tahu, menemukan hal-hal baru dalam kehidupan sehari-hari bersama keluarga dan tetangganya.</p>
+          <p class="kecil">Tahun terbit: 2003 | Status: Ongoing</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="barakamon satsuki yoshino" data-genre="Slice of Life">
+        <img src="images/barakamon.jpg" alt="Sampul Barakamon">
+        <h3>Barakamon</h3>
+        <p class="kecil">Satsuki Yoshino | Slice of Life</p>
+        <button onclick='document.getElementById("d44").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d44").style.display = "none"'>Tutup</button>
+        <div id="d44" class="detail">
+          <p>Seorang kaligrafer muda pindah ke pulau kecil dan belajar memahami kehidupan melalui interaksinya dengan warga setempat.</p>
+          <p class="kecil">Tahun terbit: 2008 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="monster naoki urasawa" data-genre="Mystery">
+        <img src="images/monster.jpg" alt="Sampul Monster">
+        <h3>Monster</h3>
+        <p class="kecil">Naoki Urasawa | Mystery</p>
+        <button onclick='document.getElementById("d45").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d45").style.display = "none"'>Tutup</button>
+        <div id="d45" class="detail">
+          <p>Dr. Kenzo Tenma menghadapi konsekuensi dari keputusan medisnya ketika ia terlibat dalam kasus pembunuhan berantai.</p>
+          <p class="kecil">Tahun terbit: 1994 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="20th century boys naoki urasawa" data-genre="Mystery">
+        <img src="images/20th.jpg" alt="Sampul 20th Century Boys">
+        <h3>20th Century Boys</h3>
+        <p class="kecil">Naoki Urasawa | Mystery</p>
+        <button onclick='document.getElementById("d46").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d46").style.display = "none"'>Tutup</button>
+        <div id="d46" class="detail">
+          <p>Sekelompok teman masa kecil menyadari bahwa simbol dan cerita buatan mereka berkaitan dengan ancaman besar di masa depan.</p>
+          <p class="kecil">Tahun terbit: 1999 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="the apothecary diaries natsu hyuuga" data-genre="Drama">
+        <img src="images/tad.jpg" alt="Sampul The Apothecary Diaries">
+        <h3>The Apothecary Diaries</h3>
+        <p class="kecil">Natsu Hyuuga | Drama</p>
+        <button onclick='document.getElementById("d47").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d47").style.display = "none"'>Tutup</button>
+        <div id="d47" class="detail">
+          <p>Maomao, seorang gadis yang ahli obat-obatan, bekerja di istana kekaisaran dan memecahkan berbagai misteri.</p>
+          <p class="kecil">Tahun terbit: 2017 | Status: Ongoing</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="made in abyss akihito tsukushi" data-genre="Adventure">
+        <img src="images/mia.jpg" alt="Sampul Made in Abyss">
+        <h3>Made in Abyss</h3>
+        <p class="kecil">Akihito Tsukushi | Adventure</p>
+        <button onclick='document.getElementById("d48").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d48").style.display = "none"'>Tutup</button>
+        <div id="d48" class="detail">
+          <p>Riko dan robot bernama Reg menjelajahi jurang raksasa yang menyimpan peninggalan serta bahaya misterius.</p>
+          <p class="kecil">Tahun terbit: 2012 | Status: Ongoing</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="dorohedoro q hayashida" data-genre="Fantasy">
+        <img src="images/dorohedoro.jpg" alt="Sampul Dorohedoro">
+        <h3>Dorohedoro</h3>
+        <p class="kecil">Q Hayashida | Fantasy</p>
+        <button onclick='document.getElementById("d49").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d49").style.display = "none"'>Tutup</button>
+        <div id="d49" class="detail">
+          <p>Caiman, pria berkepala reptil, mencari penyihir yang mengubah tubuhnya sambil mengungkap rahasia dunia yang kacau.</p>
+          <p class="kecil">Tahun terbit: 2000 | Status: Completed</p>
+        </div>
+      </div>
+
+      <div class="manga" data-cari="golden kamuy satoru noda" data-genre="Adventure">
+        <img src="images/golden kamui.jpg" alt="Sampul Golden Kamuy">
+        <h3>Golden Kamuy</h3>
+        <p class="kecil">Satoru Noda | Adventure</p>
+        <button onclick='document.getElementById("d50").style.display = "block"'>Lihat Detail</button>
+        <button onclick='document.getElementById("d50").style.display = "none"'>Tutup</button>
+        <div id="d50" class="detail">
+          <p>Seorang veteran perang bekerja sama dengan gadis Ainu untuk mencari harta emas tersembunyi di Hokkaido.</p>
+          <p class="kecil">Tahun terbit: 2014 | Status: Completed</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+   <hr>
+   <hr>
+
+  <!-- TENTANG -->
+  <section id="tentang">
+    <h2>Tentang MangaShelf</h2>
+    <p>
+      MangaShelf adalah katalog digital sederhana untuk mengenal berbagai karya manga Jepang.
+      Kamu dapat mencari judul, melihat genre, membaca sinopsis, dan mengetahui nama
+      penulis dari setiap karya.
+    </p>
+    <p>
+      Website ini dibuat karena saya suka membaca manga, dan ingin punya satu tempat
+      untuk menyimpan judul-judul favorit.
+    </p>
+  </section>
+
+  <hr>
+
+  <!-- REQUEST MANGA -->
+  <section id="request">
+    <h2>Request Manga</h2>
+    <p>Ada manga yang belum ada di katalog? Isi form ini.</p>
+
+    <form>
+      <p>Nama:<br><input type="text" id="rNama"></p>
+      <p>Email:<br><input type="email" id="rEmail"></p>
+      <p>Judul manga:<br><input type="text" id="rJudul"></p>
+      <p>Genre:<br>
+        <select id="rGenre">
           <option>Action</option>
           <option>Adventure</option>
           <option>Fantasy</option>
@@ -69,623 +701,60 @@
           <option>Slice of Life</option>
           <option>Supernatural</option>
         </select>
-
-      </div>
-
-      <!-- Kartu manga dibuat lewat JavaScript -->
-      <div class="grid" id="mangaGrid"></div>
-    </section>
-
-    <!-- About -->
-    <section class="container about" id="about">
-      <div>
-        <div class="eyebrow">Tentang MangaShelf</div>
-        <h2>A home for manga lovers.</h2>
-      </div>
-      <p>
-        MangaShelf adalah katalog digital sederhana untuk mengenal berbagai karya manga Jepang.
-        kamu dapat mencari judul, melihat genre, membaca sinopsis, dan mengetahui nama
-        Author dari setiap karya.
       </p>
-    </section>
+      <p>Alasan:<br><textarea id="rAlasan" rows="4" cols="40"></textarea></p>
+      <p><input type="checkbox" id="rSetuju"> Data yang saya isi sudah benar</p>
 
-    <!-- Contact -->
-    <section class="container contact" id="contact">
-      <div>
-        <div class="eyebrow">Hubungi kami</div>
-        <h2>Contact</h2>
-        <p>Punya pertanyaan atau saran tentang MangaShelf? Silakan hubungi saya.</p>
-        <ul>
-          <li><strong>Nama:</strong> Kaafi</li>
-          <li><strong>Email:</strong> mangakafyy@gmail.com</li>
-          <li><strong>Instagram:</strong> @Kafyy</li>
-        </ul>
-      </div>
-
-      <form onsubmit="kirimPesan(event)">
-        <input type="text" id="kNama" placeholder="Nama" required>
-        <input type="email" id="kEmail" placeholder="Email" required>
-        <input type="text" id="kInstitusi" placeholder="Institusi">
-        <textarea id="kPesan" placeholder="Pesan" required></textarea>
-        <button type="submit">Kirim Pesan</button>
-        <p id="kInfo"></p>
-      </form>
-    </section>
-
-  </main>
-
-  <! ----HALAMAN DETAIL MANGA---- >
-  <section class="container" id="detailPage">
-    <button class="back-btn" onclick="showCatalog()">&larr; Kembali ke koleksi manga</button>
-
-    <div class="detail-layout">
-      <div class="detail-cover" id="detailCover">Tempat gambar sampul manga</div>
-
-      <div class="detail-info">
-        <div class="eyebrow">Informasi manga</div>
-        <h1 id="detailTitle">Judul Manga</h1>
-        <div class="detail-author" id="detailAuthor"></div>
-
-        <div class="meta">
-          <span id="detailGenre"></span>
-          <span id="detailYear"></span>
-          <span id="detailStatus"></span>
-        </div>
-
-        <h2>Sinopsis</h2>
-        <p id="detailSynopsis"></p>
-
-        <h2>Informasi Manga</h2>
-        <p id="detailExtra"></p>
-      </div>
-    </div>
+      <button type="button" onclick="document.getElementById('rInfo').style.display = 'block'">Kirim Request</button>
+      <button type="reset" onclick="document.getElementById('rInfo').style.display = 'none'">Reset</button>
+      <p id="rInfo">Terima kasih, request kamu sudah dicatat.</p>
+    </form>
   </section>
 
-  <! ----FOOTER---- >
+  <hr>
+
+  <!-- KONTAK -->
+  <section id="kontak">
+    <h2>Kontak</h2>
+    <p>Nama: Kaafi</p>
+    <p>Email: mangakafyy@gmail.com</p>
+    <p>Instagram: @Kafyy</p>
+  </section>
+
+  <hr>
+
+  <!-- FOOTER -->
   <footer>
-    <div class="container">
-      &copy; 2026 MangaShelf. Dibuat oleh Kaafi.
-    </div>
+    <p>&copy; 2026 MangaShelf. Dibuat oleh Kaafi.</p>
   </footer>
 
   <script>
-    // ---Data manga--- 
-    const mangaList = [
-      {
-        title: "One Piece",
-        author: "Eiichiro Oda",
-        genre: "Adventure",
-        year: "1997",
-        status: "Ongoing",
-        synopsis: "Monkey D. Luffy berlayar bersama kru Topi Jerami untuk mencari harta karun legendaris bernama One Piece dan menjadi Raja Bajak Laut.",
-        image: "images/one piece.jpg"
-      },
-      {
-        title: "Naruto",
-        author: "Masashi Kishimoto",
-        genre: "Action",
-        year: "1999",
-        status: "Completed",
-        synopsis: "Naruto Uzumaki adalah seorang ninja muda yang bercita-cita menjadi Hokage dan mendapatkan pengakuan dari orang-orang di desanya.",
-        image: "images/naruto.jpg"
-      },
-      {
-        title: "Bleach",
-        author: "Tite Kubo",
-        genre: "Action",
-        year: "2001",
-        status: "Completed",
-        synopsis: "Ichigo Kurosaki memperoleh kekuatan Shinigami dan harus melindungi manusia dari roh jahat serta menghadapi berbagai ancaman.",
-        image: "images/bleach.jpg"
-      },
-      {
-        title: "Dragon Ball",
-        author: "Akira Toriyama",
-        genre: "Action",
-        year: "1984",
-        status: "Completed",
-        synopsis: "Son Goku memulai petualangan untuk mengumpulkan Dragon Ball. Perjalanannya membawanya bertemu teman dan lawan yang kuat.",
-        image: "images/dragon ball.jpg"
-      },
-      {
-        title: "Demon Slayer",
-        author: "Koyoharu Gotouge",
-        genre: "Fantasy",
-        year: "2016",
-        status: "Completed",
-        synopsis: "Tanjiro Kamado menjadi pemburu iblis setelah keluarganya diserang dan adiknya, Nezuko, berubah menjadi iblis.",
-        image: "images/demon slayer.jpg"
-      },
-      {
-        title: "Jujutsu Kaisen",
-        author: "Gege Akutami",
-        genre: "Supernatural",
-        year: "2018",
-        status: "Completed",
-        synopsis: "Yuji Itadori terlibat dalam dunia penyihir jujutsu setelah menelan benda terkutuk dan menjadi wadah Sukuna.",
-        image: "images/jjk.jpg"
-      },
-      {
-        title: "Attack on Titan",
-        author: "Hajime Isayama",
-        genre: "Action",
-        year: "2009",
-        status: "Completed",
-        synopsis: "Eren Yeager berjuang melawan para Titan yang mengancam umat manusia di balik tembok raksasa.",
-        image: "images/aot.jpg"
-      },
-      {
-        title: "Death Note",
-        author: "Tsugumi Ohba",
-        genre: "Mystery",
-        year: "2003",
-        status: "Completed",
-        synopsis: "Light Yagami menemukan buku misterius yang dapat membunuh siapa pun yang namanya ditulis di dalamnya.",
-        image: "images/death note.jpg"
-      },
-      {
-        title: "Fullmetal Alchemist",
-        author: "Hiromu Arakawa",
-        genre: "Adventure",
-        year: "2001",
-        status: "Completed",
-        synopsis: "Edward dan Alphonse Elric mencari Philosopher's Stone untuk mengembalikan tubuh mereka setelah eksperimen alkimia yang gagal.",
-        image: "images/FMAB.jpg"
-      },
-      {
-        title: "Hunter x Hunter",
-        author: "Yoshihiro Togashi",
-        genre: "Adventure",
-        year: "1998",
-        status: "Hiatus",
-        synopsis: "Gon Freecss mengikuti ujian Hunter demi menemukan ayahnya dan menjelajahi dunia yang penuh tantangan.",
-        image: "images/hunter x hunter.jpg"
-      },
-      {
-        title: "My Hero Academia",
-        author: "Kohei Horikoshi",
-        genre: "Action",
-        year: "2014",
-        status: "Completed",
-        synopsis: "Izuku Midoriya bermimpi menjadi pahlawan di dunia ketika sebagian besar manusia memiliki kekuatan khusus bernama Quirk.",
-        image: "images/mha.jpg"
-      },
-      {
-        title: "Tokyo Ghoul",
-        author: "Sui Ishida",
-        genre: "Horror",
-        year: "2011",
-        status: "Completed",
-        synopsis: "Kehidupan Ken Kaneki berubah setelah ia menjadi setengah ghoul dan harus menghadapi konflik antara manusia dan ghoul.",
-        image: "images/tokyo.jpg"
-      },
-      {
-        title: "Chainsaw Man",
-        author: "Tatsuki Fujimoto",
-        genre: "Action",
-        year: "2018",
-        status: "Ongoing",
-        synopsis: "Denji hidup dalam kemiskinan bersama iblis gergaji mesin bernama Pochita sebelum terlibat dalam pekerjaan pemburu iblis.",
-        image: "images/cm.jpg"
-      },
-      {
-        title: "Spy x Family",
-        author: "Tatsuya Endo",
-        genre: "Comedy",
-        year: "2019",
-        status: "Ongoing",
-        synopsis: "Seorang mata-mata membentuk keluarga palsu untuk menjalankan misi rahasia, tanpa mengetahui rahasia yang disimpan anggota keluarganya.",
-        image: "images/spy.jpg"
-      },
-      {
-        title: "Haikyu!!",
-        author: "Haruichi Furudate",
-        genre: "Sports",
-        year: "2012",
-        status: "Completed",
-        synopsis: "Shoyo Hinata berusaha menjadi pemain voli hebat meski memiliki postur tubuh yang lebih pendek dari kebanyakan pemain.",
-        image: "images/voli.jpg"
-      },
-      {
-        title: "Slam Dunk",
-        author: "Takehiko Inoue",
-        genre: "Sports",
-        year: "1990",
-        status: "Completed",
-        synopsis: "Hanamichi Sakuragi mulai mengenal basket setelah bergabung dengan tim sekolah dan menemukan semangat baru dalam olahraga.",
-        image: "images/slam dunk.jpg"
-      },
-      {
-        title: "Blue Lock",
-        author: "Muneyuki Kaneshiro",
-        genre: "Sports",
-        year: "2018",
-        status: "Ongoing",
-        synopsis: "Sejumlah striker muda mengikuti program pelatihan ekstrem untuk membentuk penyerang terbaik bagi tim nasional Jepang.",
-        image: "images/blue lock.jpg"
-      },
-      {
-        title: "Kuroko's Basketball",
-        author: "Tadatoshi Fujimaki",
-        genre: "Sports",
-        year: "2008",
-        status: "Completed",
-        synopsis: "Tetsuya Kuroko bergabung dengan tim basket SMA Seirin dan bekerja sama dengan Taiga Kagami untuk menghadapi pemain-pemain hebat.",
-        image: "images/kb.jpg"
-      },
-      {
-        title: "JoJo's Bizarre Adventure",
-        author: "Hirohiko Araki",
-        genre: "Adventure",
-        year: "1987",
-        status: "Ongoing",
-        synopsis: "Kisah lintas generasi keluarga Joestar yang menghadapi musuh dan kejadian supernatural dengan kemampuan unik.",
-        image: "images/jojo.jpg"
-      },
-      {
-        title: "Berserk",
-        author: "Kentaro Miura",
-        genre: "Fantasy",
-        year: "1989",
-        status: "Hiatus",
-        synopsis: "Guts, seorang pendekar pedang, menjalani perjalanan penuh konflik, pengkhianatan, dan perjuangan di dunia fantasi yang kelam.",
-        image: "images/berserk.jpg"
-      },
-      {
-        title: "Vagabond",
-        author: "Takehiko Inoue",
-        genre: "Drama",
-        year: "1998",
-        status: "Hiatus",
-        synopsis: "Terinspirasi dari kehidupan pendekar Miyamoto Musashi, manga ini mengikuti perjalanan seorang samurai mencari makna kekuatan.",
-        image: "images/vagabond.jpg"
-      },
-      {
-        title: "Vinland Saga",
-        author: "Makoto Yukimura",
-        genre: "Adventure",
-        year: "2005",
-        status: "Completed",
-        synopsis: "Thorfinn tumbuh di tengah peperangan bangsa Viking dan menjalani perjalanan panjang untuk menemukan tujuan hidupnya.",
-        image: "images/vs.jpg"
-      },
-      {
-        title: "Kingdom",
-        author: "Yasuhisa Hara",
-        genre: "Action",
-        year: "2006",
-        status: "Ongoing",
-        synopsis: "Berlatar masa Negara-Negara Berperang di Tiongkok, Shin bercita-cita menjadi jenderal besar.",
-        image: "images/kingdom.jpg"
-      },
-      {
-        title: "Dr. Stone",
-        author: "Riichiro Inagaki",
-        genre: "Adventure",
-        year: "2017",
-        status: "Completed",
-        synopsis: "Senku berusaha membangun kembali peradaban manusia dengan ilmu pengetahuan setelah seluruh umat manusia membatu.",
-        image: "images/dr stone.jpg"
-      },
-      {
-        title: "The Promised Neverland",
-        author: "Kaiu Shirai",
-        genre: "Mystery",
-        year: "2016",
-        status: "Completed",
-        synopsis: "Sekelompok anak di panti asuhan menemukan rahasia mengerikan tentang tempat tinggal mereka dan merencanakan pelarian.",
-        image: "images/anime.jpg"
-      },
-      {
-        title: "Assassination Classroom",
-        author: "Yusei Matsui",
-        genre: "Comedy",
-        year: "2012",
-        status: "Completed",
-        synopsis: "Satu kelas mendapat tugas membunuh guru mereka yang memiliki kekuatan luar biasa sebelum bumi terancam.",
-        image: "images/ac.jpg"
-      },
-      {
-        title: "Mob Psycho 100",
-        author: "ONE",
-        genre: "Supernatural",
-        year: "2012",
-        status: "Completed",
-        synopsis: "Shigeo Kageyama, siswa dengan kekuatan psikis besar, berusaha menjalani kehidupan normal dan memahami perasaannya.",
-        image: "images/mp100.jpg"
-      },
-      {
-        title: "One Punch Man",
-        author: "ONE",
-        genre: "Action",
-        year: "2012",
-        status: "Ongoing",
-        synopsis: "Saitama menjadi pahlawan yang mampu mengalahkan musuh hanya dengan satu pukulan, tetapi justru merasa bosan.",
-        image: "images/opm.jpg"
-      },
-      {
-        title: "Fire Force",
-        author: "Atsushi Ohkubo",
-        genre: "Action",
-        year: "2015",
-        status: "Completed",
-        synopsis: "Shinra Kusakabe bergabung dengan pasukan pemadam khusus untuk melawan fenomena manusia yang terbakar secara spontan.",
-        image: "images/fire.jpg"
-      },
-      {
-        title: "Soul Eater",
-        author: "Atsushi Ohkubo",
-        genre: "Fantasy",
-        year: "2004",
-        status: "Completed",
-        synopsis: "Para siswa akademi senjata dan meister bekerja sama mengumpulkan jiwa untuk menciptakan Death Scythe.",
-        image: "images/se.jpg"
-      },
-      {
-        title: "Black Clover",
-        author: "Yuki Tabata",
-        genre: "Fantasy",
-        year: "2015",
-        status: "Completed",
-        synopsis: "Asta, seorang anak tanpa sihir, bertekad menjadi Wizard King di dunia yang menjadikan sihir sebagai bagian penting kehidupan.",
-        image: "images/bc.jpg"
-      },
-      {
-        title: "Fairy Tail",
-        author: "Hiro Mashima",
-        genre: "Adventure",
-        year: "2006",
-        status: "Completed",
-        synopsis: "Lucy Heartfilia bergabung dengan guild penyihir Fairy Tail dan menjalani berbagai misi bersama teman-temannya.",
-        image: "images/ft.jpg"
-      },
-      {
-        title: "Magi: The Labyrinth of Magic",
-        author: "Shinobu Ohtaka",
-        genre: "Fantasy",
-        year: "2009",
-        status: "Completed",
-        synopsis: "Aladdin menjelajahi dunia penuh dungeon, kerajaan, dan kekuatan misterius bersama teman-temannya.",
-        image: "images/magi.jpg"
-      },
-      {
-        title: "Noragami",
-        author: "Adachitoka",
-        genre: "Supernatural",
-        year: "2010",
-        status: "Completed",
-        synopsis: "Yato adalah dewa kecil yang menerima pekerjaan sederhana sambil berusaha membangun tempat bagi dirinya di dunia para dewa.",
-        image: "images/noragami.jpg"
-      },
-      {
-        title: "Fruits Basket",
-        author: "Natsuki Takaya",
-        genre: "Romance",
-        year: "1998",
-        status: "Completed",
-        synopsis: "Tohru Honda tinggal bersama keluarga Sohma dan mengetahui rahasia kutukan zodiak yang mengikat keluarga tersebut.",
-        image: "images/fruit basket.jpg"
-      },
-      {
-        title: "Kimi ni Todoke",
-        author: "Karuho Shiina",
-        genre: "Romance",
-        year: "2005",
-        status: "Completed",
-        synopsis: "Sawako Kuronuma yang pemalu perlahan membangun persahabatan dan hubungan romantis setelah bertemu teman sekelasnya.",
-        image: "images/knt.jpg"
-      },
-      {
-        title: "Ao Haru Ride",
-        author: "Io Sakisaka",
-        genre: "Romance",
-        year: "2011",
-        status: "Completed",
-        synopsis: "Futaba bertemu kembali dengan cinta pertamanya saat SMP dan mencoba memahami perubahan yang terjadi pada diri mereka.",
-        image: "images/ahr.jpg"
-      },
-      {
-        title: "Your Lie in April",
-        author: "Naoshi Arakawa",
-        genre: "Drama",
-        year: "2011",
-        status: "Completed",
-        synopsis: "Kousei Arima, pianis muda yang kehilangan kemampuannya mendengar musik, kembali menemukan semangat melalui seorang pemain biola.",
-        image: "images/lie.jpg"
-      },
-      {
-        title: "A Silent Voice",
-        author: "Yoshitoki Oima",
-        genre: "Drama",
-        year: "2013",
-        status: "Completed",
-        synopsis: "Shoya Ishida berusaha menebus kesalahan masa lalunya setelah bertemu kembali dengan Shoko Nishimiya, teman sekolah yang tuli.",
-        image: "images/asv.jpg"
-      },
-      {
-        title: "Kaguya-sama: Love Is War",
-        author: "Aka Akasaka",
-        genre: "Comedy",
-        year: "2015",
-        status: "Completed",
-        synopsis: "Dua anggota OSIS yang saling menyukai terlibat dalam persaingan strategi agar pihak lain mengungkapkan perasaan lebih dulu.",
-        image: "images/low.jpg"
-      },
-      {
-        title: "Komi Can't Communicate",
-        author: "Tomohito Oda",
-        genre: "Comedy",
-        year: "2016",
-        status: "Completed",
-        synopsis: "Shoko Komi ingin memiliki seratus teman, tetapi kesulitan berkomunikasi membuatnya memulai perjalanan bersama Tadano.",
-        image: "images/komi.jpg"
-      },
-      {
-        title: "Horimiya",
-        author: "HERO, Daisuke Hagiwara",
-        genre: "Romance",
-        year: "2011",
-        status: "Completed",
-        synopsis: "Kyoko Hori dan Izumi Miyamura menemukan sisi lain satu sama lain di luar penampilan mereka di sekolah.",
-        image: "images/horimiya.jpg"
-      },
-      {
-        title: "Yotsuba&!",
-        author: "Kiyohiko Azuma",
-        genre: "Slice of Life",
-        year: "2003",
-        status: "Ongoing",
-        synopsis: "Yotsuba, anak kecil yang penuh rasa ingin tahu, menemukan hal-hal baru dalam kehidupan sehari-hari bersama keluarga dan tetangganya.",
-        image: "images/yotsuba.jpg"
-      },
-      {
-        title: "Barakamon",
-        author: "Satsuki Yoshino",
-        genre: "Slice of Life",
-        year: "2008",
-        status: "Completed",
-        synopsis: "Seorang kaligrafer muda pindah ke pulau kecil dan belajar memahami kehidupan melalui interaksinya dengan warga setempat.",
-        image: "images/barakamon.jpg"
-      },
-      {
-        title: "Monster",
-        author: "Naoki Urasawa",
-        genre: "Mystery",
-        year: "1994",
-        status: "Completed",
-        synopsis: "Dr. Kenzo Tenma menghadapi konsekuensi dari keputusan medisnya ketika ia terlibat dalam kasus pembunuhan berantai.",
-        image: "images/monster.jpg"
-      },
-      {
-        title: "20th Century Boys",
-        author: "Naoki Urasawa",
-        genre: "Mystery",
-        year: "1999",
-        status: "Completed",
-        synopsis: "Sekelompok teman masa kecil menyadari bahwa simbol dan cerita buatan mereka berkaitan dengan ancaman besar di masa depan.",
-        image: "images/20th.jpg"
-      },
-      {
-        title: "The Apothecary Diaries",
-        author: "Natsu Hyuuga",
-        genre: "Drama",
-        year: "2017",
-        status: "Ongoing",
-        synopsis: "Maomao, seorang gadis yang ahli obat-obatan, bekerja di istana kekaisaran dan memecahkan berbagai misteri.",
-        image: "images/tad.jpg"
-      },
-      {
-        title: "Made in Abyss",
-        author: "Akihito Tsukushi",
-        genre: "Adventure",
-        year: "2012",
-        status: "Ongoing",
-        synopsis: "Riko dan robot bernama Reg menjelajahi jurang raksasa yang menyimpan peninggalan serta bahaya misterius.",
-        image: "images/mia.jpg"
-      },
-      {
-        title: "Dorohedoro",
-        author: "Q Hayashida",
-        genre: "Fantasy",
-        year: "2000",
-        status: "Completed",
-        synopsis: "Caiman, pria berkepala reptil, mencari penyihir yang mengubah tubuhnya sambil mengungkap rahasia dunia yang kacau.",
-        image: "images/dorohedoro.jpg"
-      },
-      {
-        title: "Golden Kamuy",
-        author: "Satoru Noda",
-        genre: "Adventure",
-        year: "2014",
-        status: "Completed",
-        synopsis: "Seorang veteran perang bekerja sama dengan gadis Ainu untuk mencari harta emas tersembunyi di Hokkaido.",
-        image: "images/golden kamui.jpg"
-      }
-      
-    ];
+    // Fungsi untuk mencari judul/penulis dan menyaring genre
+    function filterManga() {
+      var kata = document.getElementById("cari").value.toLowerCase();
+      var genre = document.getElementById("genre").value;
+      var semua = document.getElementsByClassName("manga");
+      var tampil = 0;
 
+      for (var i = 0; i < semua.length; i++) {
+        var cocokKata = semua[i].getAttribute("data-cari").indexOf(kata) != -1;
+        var cocokGenre = genre == "all" || semua[i].getAttribute("data-genre") == genre;
 
-    /* Mengambil elemen dari HTML */
-    const grid = document.getElementById("mangaGrid");
-    const search = document.getElementById("search");
-    const genreSelect = document.getElementById("genre");
-
-
-    /* Menampilkan daftar manga (dengan pencarian & filter genre) */
-    function renderManga() {
-      const keyword = search.value.toLowerCase().trim();
-      const selected = genreSelect.value;
-
-      // simpan nomor urut asli supaya detail yang dibuka tetap benar
-      const filtered = mangaList
-        .map((manga, index) => ({ ...manga, index }))
-        .filter(manga => {
-          const cocokKeyword =
-            manga.title.toLowerCase().includes(keyword) ||
-            manga.author.toLowerCase().includes(keyword);
-          const cocokGenre = selected === "all" || manga.genre === selected;
-
-          return cocokKeyword && cocokGenre;
-        });
-
-      // kalau tidak ada hasil
-      if (!filtered.length) {
-        grid.innerHTML = '<div class="empty">Manga tidak ditemukan. Coba kata kunci lain.</div>';
-        return;
+        if (cocokKata && cocokGenre) {
+          semua[i].style.display = "block";
+          tampil++;
+        } else {
+          semua[i].style.display = "none";
+        }
       }
 
-      grid.innerHTML = filtered.map(manga => `
-        <article class="card" onclick="showDetail(${manga.index})">
-          <div class="cover">
-            ${manga.image
-              ? `<img src="${manga.image}" alt="Sampul ${manga.title}">`
-              : `<span>Tempat gambar sampul<br><strong>${manga.title}</strong></span>`}
-          </div>
-          <h3>${manga.title}</h3>
-          <div class="author">${manga.author}</div>
-          <span class="tag">${manga.genre}</span>
-        </article>
-      `).join("");
+      // tampilkan pesan kalau tidak ada yang cocok
+      if (tampil == 0) {
+        document.getElementById("kosong").style.display = "block";
+      } else {
+        document.getElementById("kosong").style.display = "none";
+      }
     }
-
-
-    /* untuk nampilin halaman detail */
-    function showDetail(index) {
-      const manga = mangaList[index];
-
-      document.getElementById("catalogPage").style.display = "none";
-      document.getElementById("detailPage").style.display = "block";
-
-      document.getElementById("detailTitle").textContent = manga.title;
-      document.getElementById("detailAuthor").textContent = "Mangaka: " + manga.author;
-      document.getElementById("detailGenre").textContent = "Genre: " + manga.genre;
-      document.getElementById("detailYear").textContent = "Tahun: " + manga.year;
-      document.getElementById("detailStatus").textContent = "Status: " + manga.status;
-      document.getElementById("detailSynopsis").textContent = manga.synopsis;
-      document.getElementById("detailExtra").textContent = manga.title + " merupakan manga bergenre " + manga.genre.toLowerCase() + ", ditulis oleh " + manga.author + ". Karya ini pertama kali diterbitkan pada " +  manga.year + ". Status penerbitannya: " + manga.status + ".";
-
-      const cover = document.getElementById("detailCover");
-      cover.innerHTML = manga.image
-        ? `<img src="${manga.image}" alt="Sampul ${manga.title}">`
-        : "Tempat gambar sampul<br>" + manga.title;
-
-      window.scrollTo(0, 0);
-    }
-
-
-    /* Kembali ke halaman katalog ===== */
-    function showCatalog() {
-      document.getElementById("detailPage").style.display = "none";
-      document.getElementById("catalogPage").style.display = "block";
-      window.scrollTo(0, 0);
-    }
-
-    /* Event: jalankan ulang tampilan saat mengetik / ganti genre */
-    search.addEventListener("input", renderManga);
-    genreSelect.addEventListener("change", renderManga);
-
-    // tampilkan daftar manga saat halaman pertama dibuka
-    renderManga();
   </script>
 
 </body>
