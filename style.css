@@ -14,7 +14,7 @@ body {
   line-height: 1.5;
 }
 
-header { text-align: center; padding: 20px 0; }
+header { text-align: center; padding: 20px 0; background: #e9e1d3; }
 header h1 { margin: 5px 0 20px; font-size: 36px; }
 header p { font-size: 18px; }
 
